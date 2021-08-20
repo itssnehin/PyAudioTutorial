@@ -1,6 +1,6 @@
 import pyaudio
 import numpy as np
-import matplotlib
+import matplotlib.pyplot as plt
 
 
 #constants
@@ -17,8 +17,6 @@ stream = pa.open(format=FORMAT,
 				 rate=RATE,
 				 input=True,
 				 frames_per_buffer=CHUNK)
-
-
 
 
 #setup plot figure
