@@ -25,6 +25,7 @@ ax.set_xlim(0, CHUNK) #make sure our x axis matched our chunk size
 line, = ax.plot(x, np.random.rand(CHUNK))
 
 
+# Plot the waveform and update it in pseudo real-time
 while True:
 	data = stream.read(CHUNK)
 	numpydata = np.frombuffer(data, dtype = np.int16)
