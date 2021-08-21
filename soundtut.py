@@ -9,7 +9,7 @@ FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
 
-pa = pyaudio.PyAudio() # create a PyAudio instance
+pa = pyaudio.PyAudio()  # create a PyAudio instance
 stream = pa.open(format=FORMAT,
                  channels=CHANNELS,
                  rate=RATE,
@@ -19,7 +19,7 @@ stream = pa.open(format=FORMAT,
 
 
 
-fig,ax = plt.subplots(2)
+fig, ax = plt.subplots(2)
 x = np.arange(10000)
 y = np.random.randn(10000)
 
@@ -51,7 +51,7 @@ while stop is False:
 
         f, P = signal.periodogram(npdata, RATE)
         index = signal.find_peaks(P, height=1e-2)[0][0]
-        print(f[index])
+        print(str(f[index]) + " Hz")
         # display signals
         line.set_xdata(np.arange(len(npdata)))
         line.set_ydata(npdata)
