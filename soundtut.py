@@ -24,14 +24,14 @@ x = np.arange(10000)
 y = np.random.randn(10000)
 
 # Plot raw audio in time domain
-li, = ax[0].plot(x,y)
+line, = ax[0].plot(x,y)
 ax[0].set_xlim(0, CHUNK)
 ax[0].set_ylim(-500, 500)
 ax[0].set_title("Audio Signal Time Domain")
 
 
 #Plot FFT of the audio
-li2, = ax[1].plot(x,y)
+line2, = ax[1].plot(x,y)
 ax[1].set_xlim(0, 2000)
 ax[1].set_ylim([0, 5000])
 ax[1].set_title("FFT of Audio Signal")
@@ -55,12 +55,12 @@ while stop == False:
 		index = signal.find_peaks(P, height=1e-2)[0][0]
 		print(f[index])
 		#display signals
-		li.set_xdata(np.arange(len(npdata)))
-		li.set_ydata(npdata)
+		line.set_xdata(np.arange(len(npdata)))
+		line.set_ydata(npdata)
 
 		#display fft
-		li2.set_xdata(f)
-		li2.set_ydata(P)
+		line2.set_xdata(f)
+		line2.set_ydata(P)
 
 		plt.pause(0.01)
 
