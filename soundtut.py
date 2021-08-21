@@ -45,27 +45,6 @@ plt.tight_layout()
 global stop
 stop = False
 
-'''
-while stop == False:
-	
-	try:
-		#code
-		data = stream.read(CHUNK)
-		npdata = np.frombuffer(data, dtype=np.int16)
-		data_fft = 10.*np.log10(np.abs(np.fft.rfft(npdata)))
-
-		li.set_xdata(np.arange(len(npdata)))
-		li.set_ydata(npdata)
-		li2.set_xdata(np.arange(len(data_fft))*40.)
-		li2.set_ydata(data_fft)
-
-		plt.pause(0.01)
-	except KeyboardInterrupt:
-		stop = True
-	except:
-		pass
-'''
-
 #PSD attempt
 while stop == False:
 	try:
