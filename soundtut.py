@@ -2,6 +2,15 @@ import pyaudio
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import signal
+import os
+
+
+def clear():
+    # check if windows
+    if os.name == 'nt':
+        _ = os.system('cls')
+    else:  # or unix
+        _ = os.system('clear')
 
 # constants
 CHUNK = 1024
@@ -33,7 +42,7 @@ ax[0].set_title("Audio Signal Time Domain")
 # Plot FFT of the audio
 line2, = ax[1].plot(x,y)
 ax[1].set_xlim(0, 2000)
-ax[1].set_ylim([0, 5000])
+ax[1].set_ylim([0, 200])
 ax[1].set_title("FFT of Audio Signal")
 
 # show the plot
@@ -50,15 +59,17 @@ while stop is False:
         npdata = np.frombuffer(data, dtype=np.int16)
 
         f, P = signal.periodogram(npdata, RATE)
-        index = signal.find_peaks(P, height=1e-2)[0][0]
-        print(str(f[index]) + " Hz")
+        index,  = signal.find_peaks(P, height=1e-2)[0][0]
+        clear()
+        print(f[index])
         # display signals
         line.set_xdata(np.arange(len(npdata)))
         line.set_ydata(npdata)
 
         # display fft
+        PdB = 10.* np.where(P>0, np.log10(P), 0)
         line2.set_xdata(f)
-        line2.set_ydata(P)
+        line2.set_ydata(PdB)
 
         plt.pause(0.01)
 
